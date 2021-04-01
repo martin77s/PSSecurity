@@ -1,0 +1,9 @@
+﻿$context = $executioncontext.GetType().GetField(
+	'_context','nonpublic,instance').GetValue($executioncontext)
+
+$field = $context.GetType().GetField(
+	'_authorizationManager','nonpublic,instance')
+
+$field.SetValue($context,
+	(New-Object -TypeName Management.Automation.AuthorizationManager `
+		-ArgumentList Microsoft.PowerShell))
